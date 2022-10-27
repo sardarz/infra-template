@@ -18,11 +18,13 @@ async function releaseTicket() {
   const patchVersion = tag.split(".").pop();
 
   let desc = getDescription(patchVersion)
+  getDescription(patchVersion).then(value => {
+    console.log("from promise", value)
+  })
   console.log("desc", desc)
 }
 
 async function getDescription(patchVersion) {
-  `git log --pretty="%h %cn %B" rc-0.0.0...rc-0.0.1`;
   let myOutput = "";
   let myError = "";
   const options = {};
