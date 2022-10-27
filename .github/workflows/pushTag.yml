@@ -5,6 +5,8 @@ on:
     tags:
       - rc-0.0.*
 
+  workflow_dispatch:
+
 jobs:
   release:
     runs-on: ubuntu-latest
