@@ -1,4 +1,4 @@
-name: Check Lint and TS
+name: Release version
 
 on:
   push:
