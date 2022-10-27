@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
-const github = require("@actions/github");
-const exec = require("@actions/exec");
+import exec from "@actions/exec"
+import github from "@actions/github"
 
 const {AUTH, ORG_ID} = process.env
 
@@ -17,7 +17,9 @@ function releaseTicket() {
   console.log("author: ", author)
   console.log("tag: ", tag)
   console.log(github.context)
-
+  console.log("-----------------")
+  console.log("exec", exec)
+  console.log("github", github)
 }
 
 releaseTicket()
