@@ -14,6 +14,10 @@ async function releaseTicket() {
   const author = github.context.actor;
   const regex = /rc-\d+-\d+-\d+/
   const ref = github.context.ref
+
+  console.log("ref", ref)
+  console.log("github.context", github.context)
+
   const tag = ref.match(regex)[0];
   const patchVersion = tag.split(".").pop();
 
