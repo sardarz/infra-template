@@ -13,7 +13,7 @@ async function releaseTicket() {
   const ticketURL = `https://api.tracker.yandex.net/v2/issues/HOMEWORKSHRI-168`;
   const author = github.context.actor;
   const regex = /rc-\d+-\d+-\d+/
-  const ref = github.context.ref
+  const ref = github.ref
 
   console.log("ref", ref)
   console.log("github.context", github.context)
