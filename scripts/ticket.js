@@ -1,6 +1,6 @@
+import fetch from "node-fetch";
 const github = require("@actions/github");
 const exec = require("@actions/exec");
-import fetch from "node-fetch";
 
 const {AUTH, ORG_ID} = process.env
 
