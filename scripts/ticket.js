@@ -15,10 +15,6 @@ async function releaseTicket() {
   const regex = /rc-\d+.\d+.\d+/
   const ref = github.context.ref
 
-  console.log("ref", ref)
-  console.log("github", github)
-  console.log("author", author)
-
   const tag = ref.match(regex)[0];
   const patchVersion = tag.split(".").pop();
 
@@ -42,7 +38,8 @@ async function getDescription(patchVersion) {
     },
   };
   let version = patchVersion === 0 ? "rc-0.0.0" : `rc-0.0.${patchVersion - 1}...rc-0.0.${patchVersion}`
-  return exec.exec("git log", [`--pretty="%h %cn %B" ${version}`], options)
+  exec.exec("git log", [`--pretty="%h %cn %B" ${version}`], options)
+  return myOutput
 }
 
 releaseTicket();
