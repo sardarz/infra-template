@@ -38,7 +38,7 @@ async function getDescription(patchVersion) {
     },
   };
   let version = patchVersion === 0 ? "rc-0.0.0" : `rc-0.0.${patchVersion - 1}...rc-0.0.${patchVersion}`
-  exec.exec("git", [`log --pretty="%h %cn %B" ${version}`], options)
+  exec.exec(`git log --pretty="%h %cn %B" ${version}`, [], options)
   return myOutput
 }
 
