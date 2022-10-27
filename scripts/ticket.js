@@ -17,6 +17,7 @@ async function releaseTicket() {
 
   console.log("ref", ref)
   console.log("github", github)
+  console.log("author", author)
 
   const tag = ref.match(regex)[0];
   const patchVersion = tag.split(".").pop();
