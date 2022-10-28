@@ -32,7 +32,8 @@ async function getDescription(patchVersion) {
   
   let version = patchVersion === 0 ? "rc-0.0.0" : `rc-0.0.${patchVersion - 1}...rc-0.0.${patchVersion}`
   const data = await exec(`git log --pretty="%h %cn %B" ${version}`)
-  console.log(data)
+  console.log(data.stdout)
+  return data.stdout
 }
 
 releaseTicket();
