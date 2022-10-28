@@ -17,25 +17,30 @@ async function releaseTicket() {
   const author = github.context.actor;
   const regex = /rc-\d+.\d+.\d+/
   const ref = github.context.ref
-
   const tag = ref.match(regex)[0];
   const patchVersion = tag.split(".").pop();
-
-  let desc = getDescription(patchVersion)
-  getDescription(patchVersion).then(value => {
-    console.log("from promise description", value)
+  let desc = await getDescription(patchVersion);
+  const date = new Date().getDate()
+  const month = new Date().getMonth() + 1
+  const year = new Date().getFullYear()
+  const header = `Релиз ${tag} - ${date}/${month}/${year}`
+  const description = getDescription(patchVersion);
+  const dataToBeSend = {
+    summary: header,
+    description
+  }
+  fetch(ticketURL, {
+    method: "PATCH",
+    headers,
+    body: dataToBeSend
   })
-  console.log("desc", desc)
 }
 
-async function getDescription(patchVersion) {
-  
+async function getDescription(patchVersion) {  
   let version = patchVersion === 0 ? "rc-0.0.0" : `rc-0.0.${patchVersion - 1}...rc-0.0.${patchVersion}`
-  await exec("git status")
   const data = await exec(`git log --pretty="%h %cn %B" ${version}`)
 
   return data.stdout
-
 }
 
 releaseTicket();
