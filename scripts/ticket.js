@@ -24,7 +24,7 @@ async function releaseTicket() {
   const month = new Date().getMonth() + 1
   const year = new Date().getFullYear()
   const header = `Релиз ${tag} - ${date}/${month}/${year}`
-  const description = getDescription(patchVersion);
+  const description = getDescription(patchVersion).split("\n").filter(x => x.length).join("\n")
   const dataToBeSend = {
     summary: header,
     description
