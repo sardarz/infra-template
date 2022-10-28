@@ -32,7 +32,7 @@ async function releaseTicket() {
   fetch(ticketURL, {
     method: "PATCH",
     headers,
-    body: dataToBeSend
+    body: JSON.stringify(dataToBeSend)
   })
 }
 
