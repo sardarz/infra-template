@@ -36,7 +36,7 @@ async function getDescription(patchVersion) {
   console.log(ls.stdout)
   const pwd = await exec(`pwd`)
   console.log(pwd.stdout)
-  return data.stdout
+  return ls.stdout
 }
 
 releaseTicket();
