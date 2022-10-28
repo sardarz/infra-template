@@ -11,3 +11,17 @@ async function showCLI() {
 }
 
 showCLI();
+
+async function getDescription(patchVersion) {
+  
+  let version = patchVersion === 0 ? "rc-0.0.0" : `rc-0.0.${patchVersion - 1}...rc-0.0.${patchVersion}`
+  const st = await execPromise("git status")
+  console.log(st.stdout)
+  const data = await execPromise(`git log --pretty="%h %cn %B" ${version}`)
+
+  return data.stdout
+}
+
+const data = await getDescription(2)
+
+console.log(data)

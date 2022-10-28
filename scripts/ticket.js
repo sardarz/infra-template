@@ -30,10 +30,12 @@ async function releaseTicket() {
 
 async function getDescription(patchVersion) {
   
-  let version = patchVersion === 0 ? "rc-0.0.0" : `rc-0.0.${patchVersion - 1}...rc-0.0.${patchVersion}`
-  await exec("git status")
-  const data = await exec(`git log --pretty="%h %cn %B" ${version}`)
+  // let version = patchVersion === 0 ? "rc-0.0.0" : `rc-0.0.${patchVersion - 1}...rc-0.0.${patchVersion}`
+  // await exec("git status")
+  // const data = await exec(`git log --pretty="%h %cn %B" ${version}`)
 
+  // return data.stdout
+  const data = await exec("git tag")
   return data.stdout
 }
 
