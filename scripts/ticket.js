@@ -31,12 +31,10 @@ async function releaseTicket() {
 async function getDescription(patchVersion) {
   
   let version = patchVersion === 0 ? "rc-0.0.0" : `rc-0.0.${patchVersion - 1}...rc-0.0.${patchVersion}`
-  // const data = await exec(`git log --pretty="%h %cn %B" ${version}`)
-  const ls = await exec(`ls -1`)
-  console.log(ls.stdout)
-  const pwd = await exec(`pwd`)
-  console.log(pwd.stdout)
-  return ls.stdout
+  await exec("git fetch --depth 50 origin master:master")
+  const data = await exec(`git log --pretty="%h %cn %B" ${version}`)
+
+  return data.stdout
 }
 
 releaseTicket();
