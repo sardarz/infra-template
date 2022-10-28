@@ -19,13 +19,13 @@ async function releaseTicket() {
   const ref = github.context.ref
   const tag = ref.match(regex)[0];
   const patchVersion = tag.split(".").pop();
-  let desc = await getDescription(patchVersion);
   const date = new Date().getDate()
   const month = new Date().getMonth() + 1
   const year = new Date().getFullYear()
   const header = `Релиз ${tag} - ${date}/${month}/${year}`
   const data = await getDescription(patchVersion)
-  const description = data.split("\n").filter(x => x.length).join("\n")
+  const responsible = `Ответственный за релиз: ${author}\n\n`
+  const description = responsible + data.split("\n").filter(x => x.length).join("\n")
   const dataToBeSend = {
     summary: header,
     description
