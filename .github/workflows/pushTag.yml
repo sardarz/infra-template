@@ -33,3 +33,8 @@ jobs:
           AUTH: ${{secrets.AUTH}}
           ORG_ID: ${{secrets.ORG_ID}}
         run: npm run ticket
+      - name: Create docker image
+        env: 
+          AUTH: ${{secrets.AUTH}}
+          ORG_ID: ${{secrets.ORG_ID}}
+        run: npm run docker
